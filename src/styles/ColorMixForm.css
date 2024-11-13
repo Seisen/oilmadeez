@@ -1,0 +1,104 @@
+/* ColorMixForm.css */
+.container {
+  width: 80%;
+  margin: 0 auto;
+  font-family: Arial, sans-serif;
+}
+
+h1 {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.input-container {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-left: 50px;
+  
+}
+
+.input-container-main{
+  display: flex;
+  flex-direction: row;
+
+}
+
+input {
+  padding: 8px;
+  font-size: 14px;
+  margin-top: 5px;
+}
+
+button {
+  padding: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+/* Affichage de la palette et couleur cible */
+.results {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.section {
+  margin-bottom: 20px;
+}
+
+.palette {
+  display: flex;
+  gap: 10px;
+}
+
+.color-box {
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-weight: bold;
+  border-radius: 0%;
+
+}
+
+.color-box span {
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+}
+
+/* Centrer la couleur cible sous l'input */
+.input-container input[type="color"] {
+  width: 100%;
+  height: 50px;
+  cursor: pointer;
+  border: none;
+  margin-top: 0%;
+  padding: 0%;
+}
+
+.input-container input[type="color"],.palette {
+  justify-content: center;
+}
+.color-box span {
+  font-size: 12px;
+  font-weight: normal;
+  color: black;
+  text-shadow: none;
+}
