@@ -1,104 +1,88 @@
-/* ColorMixForm.css */
-.container {
-  width: 80%;
-  margin: 0 auto;
-  font-family: Arial, sans-serif;
+h1{
+  padding-left: 5vw;
 }
-
-h1 {
-  text-align: center;
-  margin-top: 20px;
-}
-
 .form {
   display: flex;
+  width: 90vw;
+  padding-left: 5vw;
+
+}
+
+.container-left {
+  display: flex;
+  width: 70%;
   flex-direction: column;
-  gap: 15px;
-  margin-bottom: 30px;
 }
 
-.input-container,.palette-preview {
+.container-target-color {
   display: flex;
-  flex-direction: row;
-  gap: 15px;
-  margin-left: 50px;
-  
+  width: 100%;
+  justify-content: flex-start;
+  height: 70px;
 }
 
-.input-container-main{
+.input-container-target-color {
   display: flex;
-  flex-direction: row;
-
-}
-
-input {
-  padding: 8px;
-  font-size: 14px;
-  margin-top: 5px;
-}
-
-button {
-  padding: 10px;
-  font-size: 16px;
-  cursor: pointer;
-  background-color: #4CAF50;
-  color: white;
-  border: none;
-  border-radius: 5px;
-}
-
-button:hover {
-  background-color: #45a049;
-}
-
-/* Affichage de la palette et couleur cible */
-.results {
-  display: flex;
-  flex-direction: column;
-  gap: 30px;
-}
-
-.section {
-  margin-bottom: 20px;
-}
-
-.palette {
-  display: flex;
-  gap: 10px;
-}
-
-.color-box {
-  width: 50px;
-  height: 50px;
-  display: flex;
-  justify-content: center;
+  justify-content: space-between;
+  gap: 20px;
   align-items: center;
-  color: white;
-  font-weight: bold;
-  border-radius: 0%;
-
 }
 
-.color-box span {
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+#targetColor {
+  width: 100px;
+  height: 70%;
+  border: none;
 }
 
-/* Centrer la couleur cible sous l'input */
-.input-container input[type="color"] {
+label {
+  display: flex;
+  height: 60%;
+}
+
+.input-container-from-img {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding-left: 20px;
+}
+
+.input-img {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  align-items: center;
+}
+
+#imageUpload {
+  display: flex;
+  margin: 0px;
+}
+
+.input-container-palette {
+  display: flex;
+  gap: 20px;
+  height: 70px;
+  padding-bottom: 10px;
+  align-items: center;
+}
+
+.container-palette {
+  display: flex;
+  width: 30%;
+  flex-direction: column;
+}
+select#palette{
+  width: 300px;
+  height: 70%;
+}
+.color-box {
+  display: flex;
   width: 100%;
   height: 50px;
-  cursor: pointer;
-  border: none;
-  margin-top: 0%;
-  padding: 0%;
-}
-
-.input-container input[type="color"],.palette {
   justify-content: center;
+  align-items: center;
 }
-.color-box span {
-  font-size: 12px;
-  font-weight: normal;
-  color: black;
-  text-shadow: none;
+.color-box-span{
+  display: flex;
 }

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import ColorMixForm from './components/ColorMixForm';
 import { signInWithGoogle, signOutUser, onAuthStateChangedListener } from "./firestore/userService"; // Import des fonctions d'auth
-
+import './App.css';
 const App = () => {
   const [user, setUser] = useState(null); // État pour stocker les informations utilisateur
 
@@ -42,7 +42,7 @@ const App = () => {
     <div>
       {user ? (
         <div>
-          <button onClick={handleSignOut}>Se déconnecter</button>
+          <button className = "log-button" onClick={handleSignOut}>Se déconnecter</button>
           <div className="App">
             <ColorMixForm />
           </div>

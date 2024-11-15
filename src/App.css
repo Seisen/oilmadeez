@@ -1,13 +1,9 @@
-button {
-  background-color: #4285f4; /* Google Blue */
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  font-size: 16px;
-  cursor: pointer;
-  border-radius: 5px;
+.log-button {
+  position: absolute;
+  display: none;
 }
 
 button:hover {
-  background-color: #357ae8; /* Darker blue on hover */
+  background-color: #357ae8;
+  /* Darker blue on hover */
 }

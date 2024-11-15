@@ -1,4 +1,5 @@
 import React, { useRef, useState, useEffect } from "react";
+import '../styles/ColorMixForm.css';
 
 const ColorPickerCanvas = ({ onColorSelect }) => {
     const [image, setImage] = useState(null); // Stocke l'image uploadée
@@ -83,8 +84,7 @@ const ColorPickerCanvas = ({ onColorSelect }) => {
     };
 
     return (
-        <div>
-            <label htmlFor="imageUpload">Charger une image</label>
+        <div className="input-img">
             <input type="file" id="imageUpload" accept="image/*" onChange={handleImageUpload} />
 
             {image && (
