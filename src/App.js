@@ -1,46 +1,40 @@
 import React, { useState, useEffect } from "react";
 import ColorMixForm from './components/ColorMixForm';
-import { db } from "./firebase-config";  // import the Firestore instance
-import { collection, addDoc, getDocs } from "firebase/firestore";  // Firestore methods
-import { auth, googleProvider } from "./firebase-config"; // Import auth and Google provider
-import { signInWithPopup, onAuthStateChanged, signOut } from "firebase/auth"; // Import Firebase Auth functions
-
-
+import { signInWithGoogle, signOutUser, onAuthStateChangedListener } from "./firestore/userService"; // Import des fonctions d'auth
 
 const App = () => {
-  const [user, setUser] = useState(null); // State to store user information
+  const [user, setUser] = useState(null); // État pour stocker les informations utilisateur
 
-  // Track authentication state
+  // Suivi de l'état d'authentification
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
+    const unsubscribe = onAuthStateChangedListener((user) => {
       if (user) {
-        setUser(user); // If user is logged in, set user info
+        setUser(user); // Si connecté, mettre à jour l'utilisateur
       } else {
-        setUser(null); // If no user, set to null
+        setUser(null); // Sinon, réinitialiser
       }
     });
 
-    return () => unsubscribe(); // Cleanup listener on unmount
+    return () => unsubscribe(); // Nettoie l'écouteur lors du démontage
   }, []);
 
-  // Handle Google Sign In
+  // Gestion de la connexion Google
   const handleGoogleSignIn = async () => {
     try {
-      const result = await signInWithPopup(auth, googleProvider); // Trigger Google login popup
-      const user = result.user;
-      console.log("User Logged In: ", user);
+      const user = await signInWithGoogle(); // Connexion avec Google
+      console.log("Utilisateur connecté : ", user);
     } catch (error) {
-      console.error("Error signing in with Google: ", error);
+      console.error("Erreur lors de la connexion avec Google : ", error);
     }
   };
 
-  // Handle Sign Out
+  // Gestion de la déconnexion
   const handleSignOut = async () => {
     try {
-      await signOut(auth); // Sign the user out
-      console.log("User Signed Out");
+      await signOutUser(); // Déconnexion
+      console.log("Utilisateur déconnecté");
     } catch (error) {
-      console.error("Error signing out: ", error);
+      console.error("Erreur lors de la déconnexion : ", error);
     }
   };
 
@@ -48,23 +42,16 @@ const App = () => {
     <div>
       {user ? (
         <div>
-          <button onClick={handleSignOut}>Sign Out</button>
+          <button onClick={handleSignOut}>Se déconnecter</button>
           <div className="App">
             <ColorMixForm />
           </div>
         </div>
-
       ) : (
-        <button onClick={handleGoogleSignIn}>Sign in with Google</button>
+        <button onClick={handleGoogleSignIn}>Se connecter avec Google</button>
       )}
-
     </div>
-
-
   );
 };
-
-
-
 
 export default App;

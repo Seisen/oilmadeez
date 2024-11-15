@@ -17,9 +17,9 @@ h1 {
   margin-bottom: 30px;
 }
 
-.input-container {
+.input-container,.palette-preview {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   gap: 15px;
   margin-left: 50px;
   

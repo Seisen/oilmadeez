@@ -1,23 +1,52 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from "react";
 import axios from 'axios';
-import '../styles/ColorMixForm.css'; // Importer le fichier CSS pour le style
+import '../styles/ColorMixForm.css';
+import { getPalettesByUser } from "../firestore/paletteService";
+import { auth } from "../firebase-config";
+import ColorPickerCanvas from "./ColorPickerCanvas"; // Importer le nouveau composant
+
 const ColorMixForm = () => {
-    const [palette, setPalette] = useState({
-        rouge: '#FF0000',
-        vert: '#00FF00',
-        bleu: '#0000FF'
-    });
     const [targetColor, setTargetColor] = useState('#FFA500');
     const [mixedColor, setMixedColor] = useState('');
     const [weights, setWeights] = useState({});
+    const [palettes, setPalettes] = useState([]);
+    const [selectedPalette, setSelectedPalette] = useState(null); // Palette sélectionnée
 
+    // Récupération des palettes de l'utilisateur connecté
+    useEffect(() => {
+        const fetchPalettes = async () => {
+            const user = auth.currentUser;
+            if (!user) return;
+
+            try {
+                const userPalettes = await getPalettesByUser(user.uid);
+                setPalettes(userPalettes);
+
+                // Définir la première palette comme valeur par défaut
+                if (userPalettes.length > 0) {
+                    setSelectedPalette(userPalettes[0]);
+                }
+            } catch (error) {
+                console.error("Erreur lors de la récupération des palettes :", error);
+            }
+        };
+
+        fetchPalettes();
+    }, []);
+
+    // Gestion de l'envoi du formulaire
     const handleSubmit = async (e) => {
         e.preventDefault();
+        if (!selectedPalette) {
+            console.error("Aucune palette sélectionnée.");
+            return;
+        }
+
         try {
             const response = await axios.post(
                 'https://oilpaintmadeez.onrender.com/mix_colors',
                 {
-                    palette,
+                    palette: selectedPalette.colors,
                     target_color: targetColor
                 }
             );
@@ -32,6 +61,13 @@ const ColorMixForm = () => {
                 console.error("Erreur lors de la configuration de la requête:", error.message);
             }
         }
+    };
+
+    // Gestion de la sélection de la palette
+    const handlePaletteChange = (e) => {
+        const paletteId = e.target.value;
+        const palette = palettes.find((p) => p.id === paletteId);
+        setSelectedPalette(palette);
     };
 
     return (
@@ -49,23 +85,29 @@ const ColorMixForm = () => {
                         />
                     </div>
 
-
-
                     <div className="input-container">
-                        <label htmlFor="palette">Palette de couleurs:</label>
-                        <div className="section">
-
-                            <div className="palette">
-                                {Object.entries(palette).map(([name, color]) => (
-                                    <div key={name} className="color-box" style={{ backgroundColor: color }}>
-                                        <span>{name}</span>
-                                    </div>
-                                ))}
-
-                            </div>
+                        <label htmlFor="palette">Sélectionner une palette</label>
+                        
+                        <select id="palette" onChange={handlePaletteChange} value={selectedPalette?.id || ""}>
+                            {palettes.map((palette) => (
+                                <option key={palette.id} value={palette.id}>
+                                    {palette.name}
+                                </option>
+                            ))}
+                        </select>
+                        <div className="palette-preview">
+                            {selectedPalette && selectedPalette.colors.map((color) => (
+                                <div key={color.hex} className="color-box" style={{ backgroundColor: color.hex }}>
+                                    <span>{color.name}</span>
+                                </div>
+                            ))}
                         </div>
                     </div>
+                    
                 </div>
+                <div className="input-container">
+                            <ColorPickerCanvas onColorSelect={(color) => setTargetColor(color)} />
+                        </div>
 
                 <button type="submit">Mélanger</button>
             </form>
