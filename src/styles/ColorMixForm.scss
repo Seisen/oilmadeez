@@ -18,17 +18,21 @@ h1 {
 }
 
 .container-target-color {
-   @extend .display-flex;
-   width : 100%;
-   @extend .justify-content-start;
-   @extend .height-txt-div;
+ @extend .container-div;
+}
+.input-container-palette {
+  @extend .container-div;
+  @extend .padding-bottom-div; // Remplace padding-bottom-10px par la nouvelle variable
+ 
+}
+.input-container-from-img {
+  @extend .container-div;
+  @extend .padding-left-div;  // Remplace padding-left-20px par la nouvelle variable
 }
 
 .input-container-target-color {
-   @extend .display-flex;
-   justify-content : space-between;
-   @extend .gap;  // Remplace l'ancienne classe gap-20
-   @extend .align-items-center;
+  @extend .container-div;
+
 }
 
 #targetColor, .result-color {
@@ -45,16 +49,10 @@ h1 {
 }
 
 label {
-  display: flex;
-  height: fit-content;
+  @extend .label-content !optional;
 }
 
-.input-container-from-img {
-   @extend .display-flex;
-   @extend .align-items-center;
-   @extend .gap;
-   @extend .padding-left-div;  // Remplace padding-left-20px par la nouvelle variable
-}
+
 
 .input-img {
    @extend .display-flex;
@@ -68,13 +66,7 @@ label {
   margin: 0;
 }
 
-.input-container-palette {
-   @extend .display-flex;
-   @extend .gap;
-   @extend .height-txt-div;
-   @extend .padding-bottom-div; // Remplace padding-bottom-10px par la nouvelle variable
-   @extend .align-items-center;
-}
+
 
 .container-palette {
    @extend .display-flex;
@@ -88,11 +80,10 @@ select#palette {
 }
 
 .color-box {
-   @extend .display-flex;
+   @extend .colorbox;
    width : 100%;
-   @extend .height-color-box; // Applique la nouvelle hauteur
    @extend .justify-content-center;
-   @extend .align-items-center;
+ 
 }
 
 .color-box-span {
@@ -100,8 +91,7 @@ select#palette {
 }
 
 .container-result-color {
-   @extend .display-flex;
-   @extend .align-items-center;
-   @extend .height-txt-div;
+  @extend .colorbox;
   flex-direction: row;
+  
 }
