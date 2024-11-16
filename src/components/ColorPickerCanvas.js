@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from "react";
-import '../styles/ColorMixForm.css';
+import '../styles/ColorMixForm.scss';
 
 const ColorPickerCanvas = ({ onColorSelect }) => {
     const [image, setImage] = useState(null); // Stocke l'image uploadée

@@ -1,0 +1,107 @@
+@import './variables'; // Importer les variables
+
+/* Specific Elements */
+h1 {
+  padding-left: 5vw;
+}
+
+.form {
+   @extend .display-flex; // Remplace @extend par la variable
+  width: 90vw;
+   @extend .padding-form; // Applique directement la variable pour le padding
+}
+
+.container-left {
+   @extend .display-flex;
+  width: 70%;
+  flex-direction: column;
+}
+
+.container-target-color {
+   @extend .display-flex;
+   width : 100%;
+   @extend .justify-content-start;
+   @extend .height-txt-div;
+}
+
+.input-container-target-color {
+   @extend .display-flex;
+   justify-content : space-between;
+   @extend .gap;  // Remplace l'ancienne classe gap-20
+   @extend .align-items-center;
+}
+
+#targetColor, .result-color {
+  width: 100px;
+  height: 70%;
+  border: none;
+   @extend .display-flex;
+   @extend .justify-content-center;
+   @extend .align-items-center;
+}
+
+.result-color {
+  padding-left: 20px;
+}
+
+label {
+  display: flex;
+  height: fit-content;
+}
+
+.input-container-from-img {
+   @extend .display-flex;
+   @extend .align-items-center;
+   @extend .gap;
+   @extend .padding-left-div;  // Remplace padding-left-20px par la nouvelle variable
+}
+
+.input-img {
+   @extend .display-flex;
+  flex-direction: column;
+   @extend .gap;
+   @extend .align-items-center;
+}
+
+#imageUpload {
+   @extend .display-flex;
+  margin: 0;
+}
+
+.input-container-palette {
+   @extend .display-flex;
+   @extend .gap;
+   @extend .height-txt-div;
+   @extend .padding-bottom-div; // Remplace padding-bottom-10px par la nouvelle variable
+   @extend .align-items-center;
+}
+
+.container-palette {
+   @extend .display-flex;
+   width : 40%;
+  flex-direction: column;
+}
+
+select#palette {
+  width: 300px;
+  height: 70%;
+}
+
+.color-box {
+   @extend .display-flex;
+   width : 100%;
+   @extend .height-color-box; // Applique la nouvelle hauteur
+   @extend .justify-content-center;
+   @extend .align-items-center;
+}
+
+.color-box-span {
+   @extend .display-flex;
+}
+
+.container-result-color {
+   @extend .display-flex;
+   @extend .align-items-center;
+   @extend .height-txt-div;
+  flex-direction: row;
+}

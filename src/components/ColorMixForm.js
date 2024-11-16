@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from 'axios';
-import '../styles/ColorMixForm.css';
+import '../styles/ColorMixForm.scss';
 import { getPalettesByUser } from "../firestore/paletteService";
 import { auth } from "../firebase-config";
 import ColorPickerCanvas from "./ColorPickerCanvas"; // Importer le nouveau composant
@@ -110,10 +110,13 @@ const ColorMixForm = () => {
                         <div className="results">
                             {mixedColor && (
                                 <div className="section">
-                                    <h2>Couleur mélangée:</h2>
-                                    <div className="color-box" style={{ backgroundColor: mixedColor }}>
-                                        <span>{mixedColor}</span>
+                                    <div className ="container-result-color">
+                                        <label>Couleur mélangée:</label>
+                                        <div className="result-color" style={{ backgroundColor: mixedColor }}>
+                                            <span>{mixedColor}</span>
+                                        </div>
                                     </div>
+                                  
                                     <h3>Poids des couleurs :</h3>
                                     <pre>{JSON.stringify(weights, null, 2)}</pre>
                                 </div>
