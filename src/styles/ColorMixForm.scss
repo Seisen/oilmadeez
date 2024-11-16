@@ -13,7 +13,8 @@ h1 {
 
 .container-left {
    @extend .display-flex;
-  width: 70%;
+  width: 55%;
+  padding-right: 5%;
   flex-direction: column;
 }
 
@@ -35,18 +36,9 @@ h1 {
 
 }
 
-#targetColor, .result-color {
-  width: 100px;
-  height: 70%;
-  border: none;
-   @extend .display-flex;
-   @extend .justify-content-center;
-   @extend .align-items-center;
-}
 
-.result-color {
-  padding-left: 20px;
-}
+
+
 
 label {
   @extend .label-content !optional;
@@ -67,16 +59,20 @@ label {
 }
 
 
-
 .container-palette {
    @extend .display-flex;
    width : 40%;
   flex-direction: column;
 }
 
-select#palette {
-  width: 300px;
-  height: 70%;
+select#palette , #targetColor,.result-color {
+ @extend  .input-select;
+}
+.result-color {
+  @extend   .padding-left-div;
+  justify-content: center;
+  align-items: center;
+
 }
 
 .color-box {
@@ -93,5 +89,5 @@ select#palette {
 .container-result-color {
   @extend .colorbox;
   flex-direction: row;
-  
+
 }
