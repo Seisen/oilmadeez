@@ -41,12 +41,20 @@ const ColorMixForm = () => {
             console.error("Aucune palette sélectionnée.");
             return;
         }
+        console.error(selectedPalette.colors);
+        const colorsArray = selectedPalette.colors;  // Ton tableau d'objets
+        const acc=  colorsArray.reduce((acc, color) => {
+          // Utilise le nom de la couleur comme clé et le hex comme valeur
+          acc[color.name] = color.hex;
+          return acc;
+        }, {});
+
 
         try {
             const response = await axios.post(
                 'https://oilpaintmadeez.onrender.com/mix_colors',
                 {
-                    palette: selectedPalette.colors,
+                    palette: acc,
                     target_color: targetColor
                 }
             );
