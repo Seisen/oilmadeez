@@ -1,41 +1,42 @@
-@import './variables'; // Importer les variables
+@import './app.scss'; // Importer les variables
 
 /* Specific Elements */
-h1 {
-  padding-left: 5vw;
 
-}
 
 .form {
-   @extend .display-flex; // Remplace @extend par la variable
+
+  @extend .display-flex; // Remplace @extend par la variable
   width: 90vw;
-   @extend .padding-form; // Applique directement la variable pour le padding
-   font-family: 'Roboto', sans-serif;
-  
+  @extend .padding-form; // Applique directement la variable pour le padding
+
+
 }
 
 
 .container-left {
-   @extend .display-flex;
-  width: 55%;
+  @extend .display-flex;
+  width: 75%;
   padding-right: 5%;
   flex-direction: column;
 
-  padding: 1%;
 }
 
 .container-target-color {
- @extend .container-div;
+  @extend .container-div;
+
 }
+
 .input-container-palette {
   @extend .container-div;
 
+
   @extend .padding-bottom-div; // Remplace padding-bottom-10px par la nouvelle variable
- 
+
 }
+
 .input-container-from-img {
   @extend .container-div;
-  @extend .padding-left-div;  // Remplace padding-left-20px par la nouvelle variable
+  @extend .padding-left-div; // Remplace padding-left-20px par la nouvelle variable
 }
 
 .input-container-target-color {
@@ -54,47 +55,78 @@ label {
 
 
 .input-img {
-   @extend .display-flex;
+  @extend .display-flex;
   flex-direction: column;
-   @extend .gap;
-   @extend .align-items-center;
+  @extend .gap;
+  @extend .align-items-center;
 }
 
 #imageUpload {
-   @extend .display-flex;
+  @extend .display-flex;
   margin: 0;
 }
 
 
 .container-palette {
-  padding: 1%;
-  
-   @extend .display-flex;
-   width : 40%;
+
+  @extend .item;
+  @extend .display-flex;
+  flex-grow: 1;
   flex-direction: column;
+  box-sizing: border-box;
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
 }
-#targetColor{
+
+.palette-preview::-webkit-scrollbar-track {
+  @extend .webkit-scrollbar-track;
+}
+
+.palette-preview::-webkit-scrollbar {
+  @extend .webkit-scrollbar;
+}
+
+.palette-preview::-webkit-scrollbar-thumb {
+  @extend .webkit-scrollbar-thumb;
+}
+
+.palette-preview {
+  height: 60vh;
+  overflow: auto;
+  mask-image: linear-gradient(to bottom, black calc(100% - 100px), transparent 100%);
+}
+
+#targetColor {
   border: none
 }
-select#palette , #targetColor,.result-color {
- @extend  .input-select;
-}
+
+select#palette,
+#targetColor,
 .result-color {
-  @extend   .padding-left-div;
+  @extend .input-select;
+}
+
+.result-color {
+  @extend .padding-left-div;
   justify-content: center;
   align-items: center;
 
 }
 
 .color-box {
-   @extend .colorbox;
-   width : 100%;
-   @extend .justify-content-center;
- 
+  @extend .colorbox;
+  width: 100%;
+  @extend .justify-content-center;
+
 }
 
 .color-box-span {
-   @extend .display-flex;
+  @extend .display-flex;
 }
 
 .container-result-color {
@@ -102,3 +134,55 @@ select#palette , #targetColor,.result-color {
   flex-direction: row;
 
 }
+
+#mix {
+  display: flex;
+  position: relative;
+  justify-content: center;
+  width: 150px;
+  /* Largeur du bouton */
+  height: 150px;
+  /* Hauteur du bouton */
+  padding: 0;
+  /* Enlève les espaces internes par défaut */
+  border: none;
+  /* Pas de bordure */
+
+  background-color: transparent;
+  /* Pas de fond pour laisser l'image dominer */
+  cursor: pointer;
+  /* Change le curseur au survol */
+  overflow: hidden;
+  /* Assure que l'image reste dans les limites */
+}
+
+button#mix img {
+  width: 100%;
+  /* L'image remplit toute la largeur */
+  height: 100%;
+  /* L'image remplit toute la hauteur */
+  object-fit: cover;
+  /* L'image est redimensionnée pour remplir le bouton tout en gardant son ratio */
+  border: none;
+  /* Pas de bordure */
+}
+
+button#mix span {
+  position: absolute;
+  /* Superpose le texte à l'image */
+  top: 50%;
+  /* Centre verticalement */
+  left: 50%;
+  /* Centre horizontalement */
+  transform: translate(-50%, -50%);
+  /* Ajuste pour que le centre du texte soit au centre du bouton */
+  color: rgb(255, 255, 255);
+  /* Couleur du texte */
+  font-size: 45px;
+  font-weight: bold;
+  text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.7);
+  /* Ombre pour améliorer la lisibilité */
+  z-index: 1;
+  /* Assure que le texte est au-dessus de l'image */
+}
+

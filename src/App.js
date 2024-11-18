@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import ColorMixForm from './components/ColorMixForm';
 import { signInWithGoogle, signOutUser, onAuthStateChangedListener } from "./firestore/userService"; // Import des fonctions d'auth
-import './App.css';
+import './styles/app.scss';
 const App = () => {
   const [user, setUser] = useState(null); // État pour stocker les informations utilisateur
 

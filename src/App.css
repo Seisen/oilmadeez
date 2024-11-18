@@ -1,9 +1,1 @@
-.log-button {
-  position: absolute;
-  display: none;
-}
 
-button:hover {
-  background-color: #357ae8;
-  /* Darker blue on hover */
-}

@@ -1,0 +1,137 @@
+@import './variables'; // Importer les variables
+
+input[type="color"] {
+    border-radius: 14px;
+    padding: 0;
+
+}
+
+input[type="color"]::-moz-color-swatch {
+    border: none;
+}
+
+input[type="color"]::-webkit-color-swatch-wrapper {
+    padding: 0;
+    border-radius: 0;
+}
+
+input[type="color"]::-webkit-color-swatch {
+    border: none;
+}
+
+.line {
+    height: 1px;
+    background-image: linear-gradient(90deg, rgba(0, 0, 0, 0.00) 0%, #000000 50%, rgba(0, 0, 0, 0.00) 100%);
+    opacity: 0.4;
+    width: 100%;
+    margin-bottom: $spacing-small;
+}
+
+body {
+    font-size: 16px; // Taille par défaut
+    font-family: 'Roboto', sans-serif;
+    white-space: nowrap;
+
+
+}
+
+@media (min-width: 768px) {
+    body {
+        font-size: 18px; // Taille pour les tablettes
+    }
+}
+
+@media (min-width: 1024px) {
+    body {
+        font-size: 20px; // Taille pour les grands écrans
+    }
+}
+
+.log-button {
+    position: absolute;
+    display: none;
+}
+
+
+.button,input[type=file]::file-selector-button  {
+
+
+    outline: 0;
+    border: 0;
+    cursor: pointer;
+    background-color: white;
+    border-radius: 4px;
+    padding: 1% 1%;
+
+    color: #2d3748;
+    border: 1px solid #cbd5e0;
+    line-height: 26px;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .1), 0 1px 2px 0 rgba(0, 0, 0, .06);
+
+}
+
+h1 {
+    @extend .padding-form;
+
+    font-size: 5.2vh;
+    width: fit-content;
+    text-transform: uppercase;
+    letter-spacing: 25px;
+    font-weight: bold;
+    color: #303030;
+    margin-top: 6vh;
+    margin-bottom: 6vh;
+
+}
+h2 {
+    @extend .height-txt-div ;
+    font-size: 20;
+    width: fit-content;
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 6px;
+    font-weight: bold;
+    color: #303030;
+
+
+}
+
+.item {
+    display: flex;
+    padding: 6px;
+
+    background-image: linear-gradient(131.83deg, #fcf1f1 0%, rgb(255, 249, 249) 99.21%);
+
+    border-radius: 6px;
+    position: relative;
+}
+
+.item:not(:last-child) {
+    margin-right: 10px;
+}
+
+.item::before {
+    position: absolute;
+    content: "";
+  
+    top: -2px;
+    bottom: -2px;
+    left: -2px;
+    right: -2px;
+    background-image: linear-gradient(312.25deg, #a1a1a1b4 0%, rgba(255, 255, 255, 0) 66.19%);
+    z-index: -1;
+    border-radius: 6px;
+}
+
+.inner {
+    background-color: #fafafa;
+
+    display: flex;
+    flex-direction: inherit;
+    justify-content: inherit;
+    width: 100%;
+    height: inherit;
+    align-items: inherit;
+    box-shadow: 0 40px 80px #dadada;
+    border-radius: 6px;
+}

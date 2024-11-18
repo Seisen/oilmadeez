@@ -4,7 +4,7 @@ import '../styles/ColorMixForm.scss';
 import { getPalettesByUser } from "../firestore/paletteService";
 import { auth } from "../firebase-config";
 import ColorPickerCanvas from "./ColorPickerCanvas"; // Importer le nouveau composant
-
+import colourImage from '../assets/colour.png';
 const ColorMixForm = () => {
     const [targetColor, setTargetColor] = useState('#FFA500');
     const [mixedColor, setMixedColor] = useState('');
@@ -43,10 +43,10 @@ const ColorMixForm = () => {
         }
         console.error(selectedPalette.colors);
         const colorsArray = selectedPalette.colors;  // Ton tableau d'objets
-        const acc=  colorsArray.reduce((acc, color) => {
-          // Utilise le nom de la couleur comme clé et le hex comme valeur
-          acc[color.name] = color.hex;
-          return acc;
+        const acc = colorsArray.reduce((acc, color) => {
+            // Utilise le nom de la couleur comme clé et le hex comme valeur
+            acc[color.name] = color.hex;
+            return acc;
         }, {});
 
 
@@ -81,12 +81,15 @@ const ColorMixForm = () => {
     return (
         <div className="container">
             <h1>Mixeur de couleurs</h1>
+
             <form onSubmit={handleSubmit} className="form">
+
                 <div className="container-left">
+                 
                     <div className="container-target-color">
 
                         <div className="input-container-target-color">
-                            <label className= "input-container-target-color-label" htmlFor="targetColor">Couleur cible</label>
+                            <label className="input-container-target-color-label" htmlFor="targetColor">Couleur cible</label>
                             <input
                                 type="color"
                                 id="targetColor"
@@ -101,22 +104,30 @@ const ColorMixForm = () => {
                             <ColorPickerCanvas onColorSelect={(color) => setTargetColor(color)} />
                         </div>
 
+
                     </div>
 
+                    <div className="line" />
+
+
+                    <button type="submit" id="mix"> 
+                            <img src={colourImage} alt="Color Button" />
+                            <span>MIX</span>
+                            </button>
 
                     <div className="container-result">
-                        <button type="submit">Mélanger</button>
+                    
 
                         <div className="results">
                             {mixedColor && (
                                 <div className="section">
-                                    <div className ="container-result-color">
+                                    <div className="container-result-color">
                                         <label>Couleur mélangée:</label>
                                         <div className="result-color" style={{ backgroundColor: mixedColor }}>
                                             <span>{mixedColor}</span>
                                         </div>
                                     </div>
-                                  
+
                                     <h3>Poids des couleurs :</h3>
                                     <pre>{JSON.stringify(weights, null, 2)}</pre>
                                 </div>
@@ -124,27 +135,33 @@ const ColorMixForm = () => {
                         </div>
                     </div>
                 </div>
+                <div  className="container-palette">
+                    <h2> PALETTE</h2>
+                    <div className="container-palette">
+                        <div className="inner">
+                            <div className="input-container-palette">
+                                <select id="palette" onChange={handlePaletteChange} value={selectedPalette?.id || ""}>
+                                    {palettes.map((palette) => (
+                                        <option key={palette.id} value={palette.id}>
+                                            {palette.name}
+                                        </option>
+                                    ))}
+                                </select>
 
-                <div className="container-palette">
-
-                    <div className="input-container-palette">
-                        <label htmlFor="palette">Palette</label>
-
-                        <select id="palette" onChange={handlePaletteChange} value={selectedPalette?.id || ""}>
-                            {palettes.map((palette) => (
-                                <option key={palette.id} value={palette.id}>
-                                    {palette.name}
-                                </option>
-                            ))}
-                        </select>
-                    </div>
-
-                    <div className="palette-preview">
-                        {selectedPalette && selectedPalette.colors.map((color) => (
-                            <div key={color.hex} className="color-box" style={{ backgroundColor: color.hex }}>
-                                <span className="color-box-span">{color.name}</span>
                             </div>
-                        ))}
+
+                            <div className="palette-preview">
+                                {selectedPalette && selectedPalette.colors.map((color) => (
+                                    <div className="container-colorbox">
+                                        <div className="color-box">
+                                            <span className="color-box-span">{color.name}</span>
+                                            <div className="color-box-view" key={color.hex} style={{ backgroundColor: color.hex }} />
+                                        </div>
+                                        <div className="line" />
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
                     </div>
 
                 </div>
