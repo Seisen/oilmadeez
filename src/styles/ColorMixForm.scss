@@ -72,6 +72,7 @@ label {
   @extend .item;
   @extend .display-flex;
   flex-grow: 1;
+
   flex-direction: column;
   box-sizing: border-box;
 
@@ -96,7 +97,7 @@ label {
 }
 
 .palette-preview {
-  height: 60vh;
+  height: 65vh;
   overflow: auto;
   mask-image: linear-gradient(to bottom, black calc(100% - 100px), transparent 100%);
 }

@@ -130,8 +130,9 @@ h2 {
     flex-direction: inherit;
     justify-content: inherit;
     width: 100%;
-    height: inherit;
+    flex-grow: 1;
     align-items: inherit;
     box-shadow: 0 40px 80px #dadada;
     border-radius: 6px;
+    
 }

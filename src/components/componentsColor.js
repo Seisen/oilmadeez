@@ -1,5 +1,5 @@
 import React from 'react';
-import {PieChartWithCustomizedLabel} from './colorChart';
+import {PieChartWithCustomizedLabel,TinyBarChart} from './colorChart';
 // Composant pour le bouton "Mix"
 const ButtonMix = ({ onClick, imgSrc, label }) => (
     <button type="submit" id="mix" onClick={onClick}>
@@ -36,6 +36,7 @@ const ResultsSection = ({ mixedColor, weights,selectedPalette }) => (
                 {weights && selectedPalette && Object.keys(weights).length > 0 && (
                                     <PieChartWithCustomizedLabel weights={weights} palette={selectedPalette} />
                                 )}
+                                 <TinyBarChart weights={weights} palette={selectedPalette} />
             </div>
         )}
     </div>
