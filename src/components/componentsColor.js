@@ -1,5 +1,5 @@
 import React from 'react';
-
+import {PieChartWithCustomizedLabel} from './colorChart';
 // Composant pour le bouton "Mix"
 const ButtonMix = ({ onClick, imgSrc, label }) => (
     <button type="submit" id="mix" onClick={onClick}>
@@ -20,20 +20,22 @@ const TargetColorInput = ({ targetColor, onChange }) => (
         />
     </div>
 );
-
+//<div className="container-result-color">
+//<label>Couleur mélangée :</label>
+//<div className="result-color" style={{ backgroundColor: mixedColor }}>
+//    <span>{mixedColor}</span>
+//</div>
+//</div>
+//<h3>Poids des couleurs :</h3>
+//<pre>{JSON.stringify(weights, null, 2)}</pre>
 // Composant pour la section résultats
-const ResultsSection = ({ mixedColor, weights }) => (
+const ResultsSection = ({ mixedColor, weights,selectedPalette }) => (
     <div className="results">
         {mixedColor && (
             <div className="section">
-                <div className="container-result-color">
-                    <label>Couleur mélangée :</label>
-                    <div className="result-color" style={{ backgroundColor: mixedColor }}>
-                        <span>{mixedColor}</span>
-                    </div>
-                </div>
-                <h3>Poids des couleurs :</h3>
-                <pre>{JSON.stringify(weights, null, 2)}</pre>
+                {weights && selectedPalette && Object.keys(weights).length > 0 && (
+                                    <PieChartWithCustomizedLabel weights={weights} palette={selectedPalette} />
+                                )}
             </div>
         )}
     </div>

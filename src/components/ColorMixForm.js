@@ -6,6 +6,7 @@ import { auth } from "../firebase-config";
 import ColorPickerCanvas from "./ColorPickerCanvas";
 import colourImage from '../assets/colour.png';
 
+import {PieChartWithCustomizedLabel} from './colorChart';
 import {ButtonMix} from './componentsColor';
 import {TargetColorInput} from './componentsColor';
 import {ResultsSection} from './componentsColor';
@@ -83,7 +84,7 @@ const ColorMixForm = () => {
                         />
                     </div>
                     <div className="line" />
-                    <ResultsSection mixedColor={mixedColor} weights={weights} />
+                    <ResultsSection mixedColor={mixedColor} weights={weights}  selectedPalette={selectedPalette}/>
                 </div>
                 <PaletteSection
                     palettes={palettes}
