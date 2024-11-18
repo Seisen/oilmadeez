@@ -104,16 +104,16 @@ const ColorMixForm = () => {
                             <ColorPickerCanvas onColorSelect={(color) => setTargetColor(color)} />
                         </div>
 
+                        
+                    <button type="submit" id="mix"> 
+                            <img src={colourImage} alt="Color Button" />
+                            <span>MIX</span>
+                            </button>
 
                     </div>
 
                     <div className="line" />
 
-
-                    <button type="submit" id="mix"> 
-                            <img src={colourImage} alt="Color Button" />
-                            <span>MIX</span>
-                            </button>
 
                     <div className="container-result">
                     

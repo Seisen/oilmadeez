@@ -139,9 +139,9 @@ select#palette,
   display: flex;
   position: relative;
   justify-content: center;
-  width: 150px;
+  width: 200px;
   /* Largeur du bouton */
-  height: 150px;
+  height: 80px;
   /* Hauteur du bouton */
   padding: 0;
   /* Enlève les espaces internes par défaut */
@@ -178,7 +178,7 @@ button#mix span {
   /* Ajuste pour que le centre du texte soit au centre du bouton */
   color: rgb(255, 255, 255);
   /* Couleur du texte */
-  font-size: 45px;
+  font-size: 35px;
   font-weight: bold;
   text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.7);
   /* Ombre pour améliorer la lisibilité */
