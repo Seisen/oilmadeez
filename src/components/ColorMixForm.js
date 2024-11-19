@@ -6,11 +6,11 @@ import { auth } from "../firebase-config";
 import ColorPickerCanvas from "./ColorPickerCanvas";
 import colourImage from '../assets/colour.png';
 
-import {PieChartWithCustomizedLabel} from './colorChart';
-import {ButtonMix} from './componentsColor';
-import {TargetColorInput} from './componentsColor';
-import {ResultsSection} from './componentsColor';
-import {PaletteSection} from './componentsColor';
+import { PieChartWithCustomizedLabel } from './colorChart';
+import { ButtonMix } from './componentsColor';
+import { TargetColorInput } from './componentsColor';
+import { ResultsSection } from './componentsColor';
+import { PaletteSection, ButtonImgSelect } from './componentsColor';
 
 const ColorMixForm = () => {
     const [targetColor, setTargetColor] = useState('#FFA500');
@@ -18,7 +18,7 @@ const ColorMixForm = () => {
     const [weights, setWeights] = useState({});
     const [palettes, setPalettes] = useState([]);
     const [selectedPalette, setSelectedPalette] = useState(null);
-
+    const [image, setImage] = useState(null); // Stocke l'image uploadée
     useEffect(() => {
         const fetchPalettes = async () => {
             const user = auth.currentUser;
@@ -37,6 +37,11 @@ const ColorMixForm = () => {
 
         fetchPalettes();
     }, []);
+
+    const handleImageUpload = (imageUrl) => {
+        setImage(imageUrl);  // Met à jour l'état avec l'URL de l'image
+        console.log("Image URL dans le parent:", imageUrl);
+    };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -68,29 +73,38 @@ const ColorMixForm = () => {
 
     return (
         <div className="container">
-            <h1>Mixeur de couleurs</h1>
+            <h1>Color mixer</h1>
 
             <form onSubmit={handleSubmit} className="form">
                 <div className="container-left">
-                    <div className="container-target-color">
-                        <TargetColorInput
-                            targetColor={targetColor}
-                            onChange={(e) => setTargetColor(e.target.value)}
-                        />
-                        <ColorPickerCanvas onColorSelect={(color) => setTargetColor(color)} />
-                        <ButtonMix
-                            imgSrc={colourImage}
-                            label="MIX"
-                        />
-                    </div>
-                    <div className="line" />
-                    <ResultsSection mixedColor={mixedColor} weights={weights}  selectedPalette={selectedPalette}/>
+
+                    <ColorPickerCanvas onColorSelect={(color) => setTargetColor(color)} image={image} />
+
                 </div>
-                <PaletteSection
-                    palettes={palettes}
-                    selectedPalette={selectedPalette}
-                    onChange={handlePaletteChange}
-                />
+                <div className="container-right">
+                    <div className="container-target-color">
+                        <div className="container-target-color-button">
+                            <TargetColorInput
+                                targetColor={targetColor}
+                                onChange={(e) => setTargetColor(e.target.value)}
+                            />
+
+                            <ButtonMix
+                                imgSrc={colourImage}
+                                label="MIX"
+                            /></div>
+                        <div className="line"></div>
+
+                        <ButtonImgSelect onImageUpload={handleImageUpload} />
+
+
+
+                    </div>
+                    <PaletteSection
+                        palettes={palettes}
+                        selectedPalette={selectedPalette}
+                        onChange={handlePaletteChange}
+                    /></div>
             </form>
         </div>
     );

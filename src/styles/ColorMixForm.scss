@@ -23,6 +23,9 @@
 
 .container-target-color {
   @extend .container-div;
+  flex-direction: column;
+  height: fit-content;
+  align-items: flex-start
 
 }
 
@@ -45,8 +48,19 @@
 }
 
 
+.menu-palette{
+  display: flex;
+  align-items: flex-start;
 
+}
+.title-palette{
+  display: flex;
+  justify-content: space-around;
+  
 
+  box-sizing: border-box;
+
+}
 
 label {
   @extend .label-content !optional;
@@ -61,12 +75,15 @@ label {
   @extend .align-items-center;
 }
 
-#imageUpload {
-  @extend .display-flex;
-  margin: 0;
+
+
+.container-right{
+  display: flex;
+  width: 40%;
+  flex-grow: 1;
+  flex-direction: column;
+  
 }
-
-
 .container-palette {
 
   @extend .item;
@@ -135,14 +152,24 @@ select#palette,
   flex-direction: row;
 
 }
+.container-target-color-button{
+  width: 100%;
+  flex-direction: row;
+  display: flex;
+  align-items: center;
+  padding: 0;
+  @extend .gap;
+  margin: 0;
+  justify-content: space-between;
+}
 
 #mix {
   display: flex;
   position: relative;
   justify-content: center;
-  width: 210px;
+  width: 110px;
   /* Largeur du bouton */
-  height: 110px;
+  height: 85px;
   /* Hauteur du bouton */
   padding: 0;
   /* Enlève les espaces internes par défaut */
@@ -187,3 +214,20 @@ button#mix span {
   /* Assure que le texte est au-dessus de l'image */
 }
 
+.input-img {
+  position: relative;
+  width: 100%; /* Occupe toute la largeur de son conteneur par défaut */
+  height: 100%; /* Hauteur fixe ou relative selon besoin, ajustez cette valeur */
+  overflow: hidden; /* Empêche le débordement du contenu (pour canvas ou zoom) */
+  margin-top: $spacing-small;;
+  display: flex;
+  justify-content: center; /* Centre horizontalement les éléments à l'intérieur */
+  align-items: center; /* Centre verticalement les éléments à l'intérieur */
+
+  /* Ajoutez des marges ou du padding si nécessaire */
+  padding: $spacing-small;
+  box-shadow: 0 40px 80px #dadada;
+  border-radius: 6px;
+  
+
+}
