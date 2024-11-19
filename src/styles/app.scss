@@ -53,7 +53,9 @@ body {
 }
 
 
-.button,input[type=file]::file-selector-button ,#imageUpload {
+.button,
+input[type=file]::file-selector-button,
+#imageUpload {
 
 
     outline: 0;
@@ -71,8 +73,8 @@ body {
 }
 
 h1 {
-    @extend .padding-form;
-    position: absolute;
+
+    display: flex;
     font-size: 2.2vw;
     width: fit-content;
     text-transform: uppercase;
@@ -80,13 +82,16 @@ h1 {
     font-weight: bold;
     color: #303030;
 
-    margin: 1vw;
 
-    writing-mode: vertical-rl; /* Texte affiché verticalement de bas en haut */
-    text-orientation: upright; /* Orientation des lettres */
+
+    writing-mode: vertical-rl;
+    /* Texte affiché verticalement de bas en haut */
+    text-orientation: upright;
+    /* Orientation des lettres */
 }
+
 h2 {
-    @extend .height-txt-div ;
+    @extend .height-txt-div;
     font-size: 20;
     width: fit-content;
     margin: 0;
@@ -115,7 +120,7 @@ h2 {
 .item::before {
     position: absolute;
     content: "";
-  
+
     top: -2px;
     bottom: -2px;
     left: -2px;
@@ -136,6 +141,18 @@ h2 {
     align-items: inherit;
     box-shadow: 0 40px 80px #dadada;
     border-radius: 6px;
-    
+
 }
-html, body {margin: 0; height: 100%; overflow: hidden}
+
+html,
+body {
+    margin: 0;
+    height: 100%;
+    overflow: hidden;
+    -webkit-user-select: none;
+    /* Safari */
+    -ms-user-select: none;
+    /* IE 10 and IE 11 */
+    user-select: none;
+    /* Standard syntax */
+}

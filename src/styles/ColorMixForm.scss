@@ -7,7 +7,7 @@
 
   @extend .display-flex; // Remplace @extend par la variable
   width: 90vw;
-  @extend .padding-form; // Applique directement la variable pour le padding
+
 
 
 }
@@ -230,4 +230,8 @@ button#mix span {
   border-radius: 6px;
   
 
+}
+.container{
+  display: flex;
+  flex-direction: row;
 }
